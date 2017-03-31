@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Install loginhistory table.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function loginhistory_schema() {
+  $schema['login_history'] = array(
+    'description' => 'Stores information about user logins.',
+    'fields' => array(
+      'uid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The {user}.uid of the user loggin in.',
+      ),
+      'login' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Unix timestamp denoting time of login.',
+      ),
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+    ),
+  );
+  return $schema;
+}
